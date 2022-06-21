@@ -1,6 +1,6 @@
 import json
 import os
-
+import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -70,19 +70,22 @@ TEMPLATES = [
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     },
+
     # 'default': {
     #     'NAME': 'market_prj_db',
     #     'ENGINE': 'django.db.backends.postgresql',
-    #     'USER': 'prj_user',
-    #     'PASSWORD': 'prj_user',
+    #     'USER': 'django',
+    #     'PASSWORD': 'geekbrains',
     #     'HOST': 'localhost',
-    #     'PORT': '5434',
+    #     'PORT': '',
     # }
+
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -166,6 +169,6 @@ SOCIAL_AUTH_PIPELINE = (
 LOGIN_URL = "/auth/login/"
 LOGIN_ERROR_URL = "/"
 
-# import dj_database_url
+
 # prod_db = dj_database_url.config(conn_max_age=500)
 # DATABASES['default'].update(prod_db)

@@ -43,12 +43,11 @@
                 {% endif %}
             </li>
 
-
         </ul>
         <form class="form-inline my-2 my-lg-0" >
-            <input class="form-control mr-sm-1 " action="{% url 'acc:index' %}"
+            <input class="form-control mr-sm-1 " action="{% url 'acc:index' %} method='get'"
                    type="search" placeholder="Поиск на сайте" aria-label="Search"
-            name="search">
+            input name="q">
             <button class="btn btn-outline-danger my-2 my-sm-0 disabled"
                     type="submit">Поиск</button>
 
