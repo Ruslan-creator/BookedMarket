@@ -1,3 +1,4 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 
@@ -41,6 +42,11 @@ class Accommodation(models.Model):
         verbose_name="краткое описание комнаты", max_length=60, blank=True
     )
     is_active = models.BooleanField(verbose_name="активна", default=True)
+
+    rating = models.PositiveIntegerField(verbose_name="рейтинг", default=0, validators=[
+        MaxValueValidator(5),
+        MinValueValidator(0)
+    ])
 
     @staticmethod
     def get_items():

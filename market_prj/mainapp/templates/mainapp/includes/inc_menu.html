@@ -44,14 +44,17 @@
             </li>
 
         </ul>
-        <form class="form-inline my-2 my-lg-0" >
-            <input class="form-control mr-sm-1 " action="{% url 'acc:index' %} method='get'"
+        <form class="form-inline my-2 my-lg-0" method="get" action="{% url 'acc:index' %}">
+            <input class="form-control mr-sm-1 "
                    type="search" placeholder="Поиск на сайте" aria-label="Search"
-            input name="q">
+             name="q">
+
+            <input id="low_price" type="number" name="price_lte" placeholder="минимальная цена">
+            <input id="high_price" type="number" name="price_gte" placeholder="максимальная цена">
+            <input id="rating" type="number" name="rating" placeholder="рейтинг">
+
             <button class="btn btn-outline-danger my-2 my-sm-0 disabled"
                     type="submit">Поиск</button>
-
-
         </form>
 
     </div>

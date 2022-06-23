@@ -1,5 +1,9 @@
 from django.shortcuts import get_object_or_404, render
 from django.db.models import Q
+from django.views.generic import ListView
+from django_filters.views import FilterView
+
+from .filters import AccommodationFilter
 from .models import Accommodation, ListOfCountries
 
 
@@ -40,3 +44,19 @@ def accommodation(request, pk):
     }
 
     return render(request, "mainapp/accommodation_details.html", content)
+
+
+class AccommodationListView(FilterView):
+    """
+    Show list of accommodation. And do sort and filter thing
+    """
+    model = Accommodation
+    template_name = "mainapp/accommodations.html"
+    context_object_name = "list_of_accommodations"
+    queryset = Accommodation.objects.all()
+    filterset_class = AccommodationFilter
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "размещение"
+        return context
