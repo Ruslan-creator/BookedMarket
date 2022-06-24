@@ -11,12 +11,13 @@ window.onload = () => {
     const ammRange = sessionStorage.getItem('amm-range')
     const ammQ = sessionStorage.getItem('amm-q')
     if (ammStars) {
-        stars = Number(stars)
+        stars = Number(ammStars)
         input_rating.val(stars);
     }
 
     search_btn.on('click', () => {
         // stars
+        stars = stars ? stars : 4
         input_rating.val(stars);
         sessionStorage.setItem('amm-stars', stars)
         // stars end
@@ -33,11 +34,16 @@ window.onload = () => {
         }
         //range end
         //qsearch
-        sessionStorage.setItem('amm-q', q)
+        if (q) {
+            alert(value)
+            if (value && q) {
+                sessionStorage.setItem('amm-q', q)
+            }
+        }
         //qsearch end
     })
 
-    q_search.on('input', (e) => {
+    q_search.on('change', (e) => {
         q = e.target.value
     })
 
@@ -57,17 +63,19 @@ window.onload = () => {
     setTimeout(() => {
         if (ammRange) {
             range = ammRange
-            $('.range-slider').jRange('setValue', '10,20');
+            $('.range-slider').jRange('setValue', range || '10, 20');
         }
     }, 100)
 
-    if(ammQ) {
+    console.warn(ammQ, 'ammQ')
+    if (ammQ) {
+        console.warn(ammQ, 'ammQ111111')
         q = ammQ
         q_search.val(ammQ)
     }
 
     $("#my-rating").starRating({
-        initialRating: ammStars || 4,
+        initialRating: Number(ammStars) || 4,
         strokeColor: '#de003f',
         strokeWidth: 10,
         starSize: 15,
