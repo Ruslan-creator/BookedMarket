@@ -27,8 +27,8 @@ window.onload = () => {
             if (array && array.length) {
                 const l = array[0]
                 const h = array[1]
-                low_price.val(l || 0)
-                high_price.val(h)
+                low_price.val(h || 0)
+                high_price.val(l || 0)
                 sessionStorage.setItem('amm-range', range)
             }
         }
