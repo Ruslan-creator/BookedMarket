@@ -12,12 +12,33 @@ window.onload = () => {
     const ammQ = sessionStorage.getItem('amm-q')
     if (ammStars) {
         stars = Number(ammStars)
-        input_rating.val(stars);
+        input_rating.val(stars)
+        $(`[data-star="${stars}"]`).addClass('active')
     }
+
+    $('.sltru-start').on('click', function () {
+        let clickedStar = $(this).attr('data-star')
+        if (clickedStar > 0) {
+            clickedStar = Number(clickedStar)
+            console.log(clickedStar, 'clicked start')
+            const target = $(`[data-star="${clickedStar}"]`)
+            let prevTarget = $(`[data-star="${stars}"]`)
+            if (stars) {
+                prevTarget = $(`[data-star="${stars}"]`)
+            }
+            if (target.hasClass('active')) {
+                target.removeClass('active')
+                stars = null
+            } else {
+                prevTarget.removeClass('active')
+                target.addClass('active')
+                stars = clickedStar
+            }
+        }
+    })
 
     search_btn.on('click', () => {
         // stars
-        stars = stars ? stars : 4
         input_rating.val(stars);
         sessionStorage.setItem('amm-stars', stars)
         // stars end
@@ -73,18 +94,4 @@ window.onload = () => {
         q = ammQ
         q_search.val(ammQ)
     }
-
-    $("#my-rating").starRating({
-        initialRating: Number(ammStars) || 4,
-        strokeColor: '#de003f',
-        strokeWidth: 10,
-        starSize: 15,
-        disableAfterRate: false,
-        useFullStars: true,
-        callback: (currentRating) => {
-            stars = currentRating
-            console.log(stars, 'current rating')
-            // make a server call here
-        }
-    });
 }
