@@ -7,7 +7,7 @@ class AccommodationFilter(django_filters.FilterSet):
     """
     Can assert field and lookups for filter
     """
-    q = django_filters.CharFilter(field_name='name', lookup_expr='icontains')
+    q = django_filters.CharFilter(field_name='region__name', lookup_expr='icontains')
 
     class Meta:
         model = Accommodation
