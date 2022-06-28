@@ -39,7 +39,7 @@ window.onload = () => {
 
     search_btn.on('click', () => {
         // stars
-        if (starts) {
+        if (stars) {
             input_rating.val(stars);
             sessionStorage.setItem('amm-stars', stars)
         }
