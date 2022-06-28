@@ -72,7 +72,7 @@ window.onload = () => {
 
     $('.range-slider').jRange({
         from: 0,
-        to: 100,
+        to: 10000,
         step: 1,
         format: '%s',
         width: 300,
