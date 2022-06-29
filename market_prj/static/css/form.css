@@ -95,3 +95,11 @@
 .accommodations-star-rating {
     color: #fcbc0c;
 }
+
+.empty-accommodations {
+    color: #dc3545 !important;
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
