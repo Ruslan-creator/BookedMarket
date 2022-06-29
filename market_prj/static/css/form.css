@@ -90,3 +90,8 @@
 .star-list {
     display: flex;
 }
+
+
+.accommodations-star-rating {
+    color: #fcbc0c;
+}
