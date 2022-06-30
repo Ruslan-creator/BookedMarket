@@ -10,13 +10,15 @@
                     <img src="/media/{{ offer.image }}"
                          class="card-img-top filters__img" alt="...">
                     <div class="card-body fa fa-align-justify">
-                        <h5 class="card-title">{{ offer.name|title }}</h5>
+                        <h5 class="card-title">{{ offer.name|title }} <span class="accommodations-star-rating">{{offer.rating}}★</span></h5>
                         <p class="card-text">{{ offer.region|title }}</p>
                         <p class="card-text">{{ offer.price }} руб. за сутки</p>
                         <a href="{% url 'acc:accommodation' offer.pk %}"
                            class="btn btn-danger">Подробнее</a>
                     </div>
                 </div>
+                {% empty %}
+                    <div class="empty-accommodations">Вариантов размещения не найдено</div>
             {% endfor %}
         </div>
     </div>
