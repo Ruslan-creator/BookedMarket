@@ -1,9 +1,14 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
+{% load bootstrap4 static %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
 
 {% block content %}
+    {% bootstrap_messages %}
 
 <div class="container mt-3">
+
     <div class="media ">
         <img src="/media/{{ accommodation.image }}"
              class="img-fluid mt-2 col-lg-offset-4" alt="Responsive image"
@@ -16,7 +21,15 @@
                 <br>
                 <p>Стоимость за сутки: {{ accommodation.price }} руб.</p>
                 <br><br><br><br>
-
+            <div class="row">
+                {{ form.media }}
+                <div class="col-6">
+                    {% bootstrap_field form.date_from layout="horizontal" %}
+                </div>
+                <div class="col-6">
+                    {% bootstrap_field form.date_to layout="horizontal" %}
+                </div>
+            </div>
             </div>
             <div class="float-right">
                 <button class="btn  btn-danger ">

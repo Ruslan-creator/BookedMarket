@@ -5,6 +5,7 @@ from django_filters.views import FilterView
 
 from .filters import AccommodationFilter
 from .models import Accommodation, ListOfCountries
+from .forms import EventForm
 
 
 def main(request):
@@ -37,7 +38,9 @@ def accommodations(request):
 
 def accommodation(request, pk):
     title = "продукты"
+    form = EventForm
     content = {
+        "form": form,
         "title": title,
         "links_menu": ListOfCountries.objects.all(),
         "accommodation": get_object_or_404(Accommodation, pk=pk),
