@@ -1,12 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from django.shortcuts import HttpResponseRedirect, get_object_or_404, render
+from django.shortcuts import HttpResponseRedirect, get_object_or_404, render, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse
 
 from basketapp.models import Basket
 from mainapp.models import Accommodation
 
+from market_prj import settings
 
 # отображение списка записей корзины
 @login_required
@@ -25,11 +26,14 @@ def basket(request):
 
 
 # добавление продукта в корзину
-@login_required
+# @login_required
 def basket_add(request, pk):
 
     if "login" in request.META.get("HTTP_REFERER"):
         return HttpResponseRedirect(reverse("acc:accommodations", args=[pk]))
+
+    if not request.user.is_authenticated:
+        return redirect('%s?next=%s' % (settings.LOGIN_URL, f'/list_of_accommodations/accommodation_details/{pk}/'))
 
     accommodation = get_object_or_404(Accommodation, pk=pk)
     basket = Basket.objects.filter(
