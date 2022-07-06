@@ -64,6 +64,8 @@ class OrderItem(models.Model):
     accommodation = models.ForeignKey(
         Accommodation, verbose_name="размещение", on_delete=models.CASCADE
     )
+    # date_from = models.DateTimeField(verbose_name="Начальная дата")
+    # date_to = models.DateTimeField(verbose_name="Конечная дата")
     nights = models.PositiveIntegerField(verbose_name="количество", default=0)
 
     def get_accommodation_cost(self):
