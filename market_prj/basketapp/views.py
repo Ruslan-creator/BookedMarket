@@ -46,7 +46,8 @@ def basket_add(request, pk):
     basket.nights += 1
     basket.save()
 
-    return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
+    # return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
+    return HttpResponseRedirect(reverse("ordersapp:order_create"))
 
 
 # удаление продукта из корзины

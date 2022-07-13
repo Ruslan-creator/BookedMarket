@@ -16,7 +16,6 @@ df = settings.DATE_INPUT_FORMATS
 #         widgets = {
 #             'name': DatePickerInput(),
 #         }
-
 class EventForm(forms.Form):
     date_from = forms.DateTimeField(
         label="Начало",
@@ -30,7 +29,7 @@ class EventForm(forms.Form):
                 "showClear": False,
                 "showTodayButton": True,
             },
-        ).start_of("report days"),
+        ),
     )
     date_to = forms.DateTimeField(
         label="Конец",
@@ -44,7 +43,7 @@ class EventForm(forms.Form):
                 "showClear": False,
                 "showTodayButton": True,
             },
-        ).end_of("report days"),
+        ),
     )
     format = forms.CharField(required=False)
 
