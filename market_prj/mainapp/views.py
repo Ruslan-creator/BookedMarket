@@ -3,7 +3,6 @@ from django.shortcuts import get_object_or_404, render, HttpResponseRedirect, re
 from django.db.models import Q
 from django.views.generic import ListView
 from django_filters.views import FilterView
-from comment.views import commentviews
 from .filters import AccommodationFilter
 from .models import Accommodation, ListOfCountries
 from comment.models import Comment
