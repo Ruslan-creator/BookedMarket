@@ -5,9 +5,12 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 from django.views.generic.detail import DetailView
 
+from authapp.models import TravelUser
 from basketapp.models import Basket
 from ordersapp.forms import OrderItemForm
 from ordersapp.models import Order, OrderItem
+from mainapp.utils import send_email_message
+from django.contrib.auth import get_user_model
 
 # from django.db.models.signals import pre_save
 # from django.db.models.signals import pre_delete
@@ -73,6 +76,17 @@ class OrderItemsCreate(CreateView):
             if orderitems.is_valid():
                 orderitems.instance = self.object
                 orderitems.save()
+
+
+        current_order = Order.objects.get(id=self.object.id)
+        user = get_user_model().objects.get(pk=self.request.user.pk)
+        params = {'nights': current_order.get_total_nights(),
+                  'price': current_order.get_total_cost(),
+                  'num_order': current_order.id,
+
+
+                  }
+        send_email_message('Успешное бронирование отеля', params, user.email)
 
         if self.object.get_total_cost() == 0:
             self.object.delete()

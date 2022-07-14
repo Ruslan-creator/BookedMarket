@@ -1,3 +1,5 @@
+import datetime
+
 from django.conf import settings
 from django.db import models
 
@@ -58,12 +60,15 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
+    date = datetime.datetime.now() + datetime.timedelta(days=3, hours=3)
     order = models.ForeignKey(
         Order, related_name="orderitems", on_delete=models.CASCADE
     )
     accommodation = models.ForeignKey(
         Accommodation, verbose_name="размещение", on_delete=models.CASCADE
     )
+    date_from = models.DateTimeField(verbose_name="Начальная дата", blank=True, null=True, default=datetime.datetime.now())
+    date_to = models.DateTimeField(verbose_name="Конечная дата", blank=True, null=True, default=date)
     nights = models.PositiveIntegerField(verbose_name="количество", default=0)
 
     def get_accommodation_cost(self):

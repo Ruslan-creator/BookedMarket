@@ -31,6 +31,8 @@ INSTALLED_APPS = [
     "basketapp",
     "ordersapp",
     "comment",
+    "bootstrap4",
+    "bootstrap_datepicker_plus",
 ]
 
 
@@ -156,17 +158,23 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-SOCIAL_AUTH_PIPELINE = (
-    "social_core.pipeline.social_auth.social_details",
-    "social_core.pipeline.social_auth.social_uid",
-    "social_core.pipeline.social_auth.auth_allowed",
-    "social_core.pipeline.social_auth.social_user",
-    "social_core.pipeline.user.create_user",
-    "authapp.pipeline.save_user_profile",
-    "social_core.pipeline.social_auth.associate_user",
-    "social_core.pipeline.social_auth.load_extra_data",
-    "social_core.pipeline.user.user_details",
-)
 LOGIN_URL = "/auth/login/"
 LOGIN_ERROR_URL = "/"
 
+# Mail notifications
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.yandex.ru"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'robot@gm56.ru'
+EMAIL_HOST_PASSWORD = '12345678AXSC'
+DEFAULT_FROM_EMAIL = 'robot@gm56.ru'
+EMAIL_USE_TLS = True
+
+# SMS notifications
+SMS_URL = "https://lcab.sms-uslugi.ru/json/v1.0/sms/send/text"
+SMS_TOKEN = ''
+
+BOOTSTRAP4 = {
+    "include_jquery": True,
+}
+DATE_INPUT_FORMATS = ["%Y.%m.%d"]

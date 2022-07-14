@@ -5,13 +5,13 @@ from django.views.generic import ListView
 from django_filters.views import FilterView
 from .filters import AccommodationFilter
 from .models import Accommodation, ListOfCountries
+
 from comment.models import Comment
 from comment.forms import CommentForm
 from django.template import RequestContext
 from django.urls import reverse
-
 from market_prj import settings
-
+from .forms import EventForm
 
 def main(request):
     return render(request, "mainapp/index.html")
@@ -43,6 +43,7 @@ def accommodations(request):
 
 def accommodation(request, pk):
     title = "продукты"
+
     comments = Comment.objects.filter(Q(accommodation_id=pk))
     instance = get_object_or_404(Comment, id=pk)
     user = get_user_model()
@@ -71,6 +72,13 @@ def accommodation(request, pk):
             'request': request,
             "pk": pk
         }
+    form = EventForm
+    content = {
+        "form": form,
+        "title": title,
+        "links_menu": ListOfCountries.objects.all(),
+        "accommodation": get_object_or_404(Accommodation, pk=pk),
+    }
 
     return render(request, "mainapp/accommodation_details.html", content)
 
