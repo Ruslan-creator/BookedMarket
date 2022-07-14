@@ -62,22 +62,16 @@ def accommodation(request, pk):
     else:
         comment_form = CommentForm()
 
-
-    content = {
-            "comment_form": comment_form,
-            "comments": comments,
-            "title": title,
-            "links_menu": ListOfCountries.objects.all(),
-            "accommodation": get_object_or_404(Accommodation, pk=pk),
-            'request': request,
-            "pk": pk
-        }
     form = EventForm
     content = {
+        "comment_form": comment_form,
+        "comments": comments,
         "form": form,
         "title": title,
         "links_menu": ListOfCountries.objects.all(),
         "accommodation": get_object_or_404(Accommodation, pk=pk),
+        'request': request,
+        "pk": pk
     }
 
     return render(request, "mainapp/accommodation_details.html", content)
