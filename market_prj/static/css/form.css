@@ -2,6 +2,8 @@
     display: flex;
     align-items: center;
     padding: 10px 0;
+    padding-left: 599px;
+    margin-top: -19px;
 }
 
 .ammo-combo-part {
@@ -93,7 +95,7 @@
 
 
 .accommodations-star-rating {
-    color: #fcbc0c;
+    color: red;
 }
 
 .empty-accommodations {
