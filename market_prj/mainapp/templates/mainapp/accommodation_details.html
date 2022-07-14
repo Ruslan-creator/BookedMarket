@@ -32,5 +32,11 @@
     <h3>Описание</h3>
     {{ accommodation.description}}
 </div>
+<br><br>
+<comment>
+    {% block comment %}
+    {% include 'mainapp/includes/inc_comment.html' %}
+    {% endblock %}
+</comment>
 </div>
 {% endblock %}
