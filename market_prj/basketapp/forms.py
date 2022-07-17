@@ -1,24 +1,20 @@
 """Формы используемые для страниц на сайте."""
 from django import forms
 from django.utils import timezone
+from basketapp.models import Basket
 from bootstrap_datepicker_plus.widgets import DateTimePickerInput
-from mainapp.models import Accommodation
-from bootstrap_datepicker_plus.widgets import DatePickerInput, TimePickerInput, DateTimePickerInput, MonthPickerInput, YearPickerInput
 from market_prj import settings
 
 df = settings.DATE_INPUT_FORMATS
 
 
-# class EventForm3(forms.ModelForm):
-#     class Meta:
-#         model = Accommodation
-#         fields = ['name']
-#         widgets = {
-#             'name': DatePickerInput(),
-#         }
-class EventForm(forms.Form):
+class BasketForm(forms.ModelForm):
+    class Meta:
+        model = Basket
+        fields = "__all__"
+
     date_from = forms.DateTimeField(
-        label="Начало",
+        label="Прибытие",
         input_formats=df,
         initial=lambda: timezone.now().astimezone().strftime(df[0]),
         widget=DateTimePickerInput(
@@ -32,7 +28,7 @@ class EventForm(forms.Form):
         ),
     )
     date_to = forms.DateTimeField(
-        label="Конец",
+        label="Выезд",
         input_formats=df,
         initial=lambda: timezone.now().astimezone().strftime(df[0]),
         widget=DateTimePickerInput(
@@ -45,5 +41,3 @@ class EventForm(forms.Form):
             },
         ),
     )
-    format = forms.CharField(required=False)
-
