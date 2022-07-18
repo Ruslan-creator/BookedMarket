@@ -24,7 +24,7 @@
 
     {% csrf_token %}
    <!--  {{ comment_form.as_p }}  -->
- <textarea class="form-control" rows="2" placeholder="Добавьте Ваш комментарий" name="text" id="text"></textarea>
+ <textarea class="form-control" rows="2" placeholder="Добавьте Ваш отзыв" name="text" id="text"></textarea>
 
  <input  type="hidden" name="accommodation_id" id="accommodation_id" value="{{ pk }}"/>
 <input  type="hidden" name="travel_user_profile_id" id="travel_user_profile_id" value="{{ request.user.id }}"/>
