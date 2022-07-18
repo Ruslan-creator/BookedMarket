@@ -3,7 +3,7 @@
 
 {% block content %}
 
-    <form class="form-horizontal" method="post" enctype="multipart/form-data">
+    <form class="form-horizontal" method="post" enctype="multipart/form-data" style="margin: 3%;">
     {% csrf_token %}
     {{ form.as_p }}
     <input class="form_control" type="submit" value="сохранить">

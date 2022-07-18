@@ -1,15 +1,11 @@
-{% extends 'ordersapp/base.html' %}
+{% extends "ordersapp/base.html" %}
 {% load static %}
-{% load bootstrap4 static %}
-{% bootstrap_css %}
-{% bootstrap_javascript jquery='full' %}
 {% load cache %}
 
 {% block content %}
     {% include 'ordersapp/includes/inc_order_summary.html' %}
     <div class="order_form">
         <form action="" method="post">
-            {{ orderitems.media }}
             {% csrf_token %}
             {{ form.as_p }}
             <table class="table">
