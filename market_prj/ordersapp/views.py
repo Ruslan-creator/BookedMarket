@@ -39,7 +39,7 @@ class OrderItemsCreate(CreateView):
     def get_context_data(self, **kwargs):
         data = super(OrderItemsCreate, self).get_context_data(**kwargs)
         OrderFormSet = inlineformset_factory(
-            Order, OrderItem, form=OrderItemForm, extra=1, fields=['accommodation', 'date_from', 'date_to']
+            Order, OrderItem, form=OrderItemForm, extra=1, fields="__all__"
         )
 
         if self.request.POST:
@@ -52,14 +52,12 @@ class OrderItemsCreate(CreateView):
                     OrderItem,
                     form=OrderItemForm,
                     extra=len(basket_items),
-                    fields=['accommodation', 'date_from', 'date_to'],
+                    fields="__all__",
                 )
                 formset = OrderFormSet()
                 for num, form in enumerate(formset.forms):
                     form.initial["accommodation"] = basket_items[num].accommodation
                     form.initial["nights"] = basket_items[num].nights
-                    form.initial["date_from"] = basket_items[num].date_from
-                    form.initial["date_to"] = basket_items[num].date_to
                     form.initial["price"] = basket_items[num].accommodation.price
                 basket_items.delete()
             else:

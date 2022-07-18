@@ -2,9 +2,9 @@
 {% load static %}
 
 {% block content %}
-  <div class="categories_list">
-    <button class="new_category">
-      <a href="{% url 'admin:country_create' %}">
+  <div class="categories_list" style="margin: 3%;">
+    <button class="new_category" style="margin-left: 0%; margin-bottom: 2%;">
+      <a href="{% url 'admin:country_create' %}" >
         новая страна
       </a>
     </button>
@@ -17,8 +17,8 @@
         <div class="category_name">
           {{ object.name|title }}
         </div>
-        <div class="category_actions">
-          <button>
+        <div class="category_actions" style="margin-bottom: 3%;">
+          <button style="margin-left: 3%; margin-top: 1%;">
             <a href="{% url 'admin:accommodations' object.pk %}">
               размещения
             </a>

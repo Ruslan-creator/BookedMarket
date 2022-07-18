@@ -1,5 +1,3 @@
-import datetime
-
 from django.conf import settings
 from django.db import models
 
@@ -11,10 +9,8 @@ class Basket(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="basket"
     )
     accommodation = models.ForeignKey(Accommodation, on_delete=models.CASCADE)
-    nights = models.PositiveIntegerField(verbose_name="кол-во ночей", default=0, blank=True, null=True)
+    nights = models.PositiveIntegerField(verbose_name="кол-во ночей", default=0)
     add_datetime = models.DateTimeField(verbose_name="время", auto_now_add=True)
-    date_from = models.DateTimeField(verbose_name="Прибытие", blank=True, null=True, default=datetime.datetime.now())
-    date_to = models.DateTimeField(verbose_name="Выезд", blank=True, null=True, default=datetime.datetime.now())
 
     # стоимость одного предложения компании
     @property
