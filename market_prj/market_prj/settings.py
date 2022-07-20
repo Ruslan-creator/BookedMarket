@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "adminapp",
     "basketapp",
     "ordersapp",
+    "comment",
     "bootstrap4",
     "bootstrap_datepicker_plus",
 ]
