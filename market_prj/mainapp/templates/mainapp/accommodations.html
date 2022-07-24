@@ -2,12 +2,22 @@
 {% load static %}
 
 {% block content %}
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark ;'">
-    <form class="amm-custom-form" method="get" action="{% url 'acc:index' %}">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark ;" >
+    <form class="amm-custom-form" method="get" action="{% url 'acc:index' %}" style="width: 400; ">
             <div class="ammo-combo-part">
-                <input id="q-search" class="form-control mr-sm-1 "
-                       type="search" placeholder="Поиск по городу" aria-label="Search"
-                       name="q">
+
+                <div class="row justify-content-around">
+                    <div class="col-4">
+                        <input id="q-search" class="form-control mr-sm-1 "
+                        type="search" placeholder="Поиск по городу" aria-label="Search"
+                        name="q" style="width: 200px;">
+                    </div>
+                    <div class="col-4">
+                        <button id="search-btn" class="btn btn-outline-danger my-2 my-sm-0 disabled" style="color: #fff;"
+                        type="submit">Поиск</button>
+                    </div>
+                </div>
+
                 <div class="ammo-query">
                     <div class="star-rating">
                         <div>
@@ -25,23 +35,25 @@
                         <input type="hidden" class="range-slider" value="10000" />
                     </div>
                 </div>
+
             </div>
 
             <input  id="low_price" type="hidden" name="price__lte" placeholder="минимальная цена">
             <input id="high_price" type="hidden" name="price__gte" placeholder="максимальная цена">
             <input id="rating" type="hidden" name="rating" placeholder="рейтинг" value="">
 
-            <button id="search-btn" class="btn btn-outline-danger my-2 my-sm-0 disabled"
-                    type="submit">Поиск</button>
+
         </form>
  </nav>
     <div class="container mt-3">
-        <div class="row centered">
+        <div class="row centered" >
             {% for offer in list_of_accommodations %}
                 <div class="card  col-lg-4" style="width: 16rem;
-                display: flex">
-                    <img src="/media/{{ offer.image }}"
-                         class="card-img-top filters__img" alt="...">
+                display: flex;">
+                    <div style="margin-left: 0%;margin-right: +5%; margin-top: 5%;">
+                        <img src="/media/{{ offer.image }}"
+                         class="card-img-top filters__img" alt="..." >
+                    </div>
                     <div class="card-body fa fa-align-justify">
                         <h5 class="card-title">{{ offer.name|title }} <span class="accommodations-star-rating">{{offer.rating}}★</span></h5>
                         <p class="card-text">{{ offer.region|title }}</p>
@@ -56,3 +68,4 @@
         </div>
     </div>
 {% endblock %}
+
